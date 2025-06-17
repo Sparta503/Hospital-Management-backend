@@ -14,8 +14,9 @@ public class AppointmentModel {
     @Column(name = "patient_id")
     private Long patientId;
     
-    @Column(name = "doctor_id")
-    private Long doctorId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
     
     @Column(name = "appointment_date")
     private String appointmentDate;
