@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: hospital-management
+    env: production
+    buildCommand: docker build -t hospital-management .
+    startCommand: docker run -p $PORT:8080 hospital-management
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: SPRING_PROFILES_ACTIVE
+        value: "prod"
+    dockerImage: sparta404/hospital-management-system:1.0.0
+    healthCheckPath: /actuator/health
+    healthCheckInterval: 30s
+    healthCheckTimeout: 3s
+    healthCheckRetries: 3
+    healthCheckStartPeriod: 10s
+    healthCheckType: http
